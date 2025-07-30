@@ -243,6 +243,11 @@ class Decoder(nn.Module):
     def forward(self, z, commands, args, label=None, hierarch_logits=None, return_hierarch=False):
         N = z.size(2)
         l = self.label_embedding(label).unsqueeze(0) if self.cfg.label_condition else None
+        # print(l.shape)
+        # print(l)
+        # SH
+        # l = torch.rand_like(l)
+        # print(l)
         if hierarch_logits is None:
             z = _pack_group_batch(z)
 
