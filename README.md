@@ -1,3 +1,7 @@
+To run: python 3.9 + uv
+
+- - - 
+
 ![logo](docs/imgs/logo.png)
 
 <p align="center">
