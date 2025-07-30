@@ -144,8 +144,10 @@ def load_ckpt_list(checkpoint_dir, model, cfg=None, optimizers=None, scheduler_l
     return True
 
 
-def load_model(checkpoint_path, model):
-    state = torch.load(checkpoint_path)
+def load_model(checkpoint_path, model, device=None):
+    # SH
+    # state = torch.load(checkpoint_path)
+    state = torch.load(checkpoint_path, map_location=device)
 
     if is_multi_gpu(model):
         model = model.module
