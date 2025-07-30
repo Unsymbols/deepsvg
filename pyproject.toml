@@ -33,3 +33,14 @@ dependencies = [
 # packages = [
 #     "deepsvg",
 # ]
+
+[tool.pdm.build]
+includes = [
+    "deepsvg",
+]
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+
