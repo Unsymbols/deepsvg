@@ -1,4 +1,7 @@
-To run: python 3.9 + uv
+To run: python 3.9
+```bash
+uv pip install -e .
+```
 
 - - - 
 
