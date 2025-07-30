@@ -13,7 +13,8 @@ dependencies = [
     "networkx>=3.1",
     "numba>=0.53.1",
     # "numpy>=1.24.4",  # numpy both 1 and 2 not possible, we force to <2 
-    "numpy>=1.24.4<2",
+    # "numpy>=1.24.4<2",
+    "numpy>=1.24.4,<2",
     "pandas>=2.0.3",
     "pillow>=10.4.0",
     "scikit-image>=0.21.0",
@@ -29,3 +30,6 @@ dependencies = [
     "tqdm>=4.67.1",
     "umap-learn[plot]>=0.5.7",
 ]
+# packages = [
+#     "deepsvg",
+# ]
