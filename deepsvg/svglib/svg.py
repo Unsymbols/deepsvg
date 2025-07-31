@@ -121,8 +121,14 @@ class SVG:
         svg_dom = expatbuilder.parseString(svg_str, False)
         svg_root = svg_dom.getElementsByTagName('svg')[0]
 
-        viewbox_list = list(map(float, svg_root.getAttribute("viewBox").split(" ")))
-        view_box = Bbox(*viewbox_list)
+
+        #SH
+        if svg_root.getAttribute("viewBox") != "":  
+            print(f"No viewbox, using 24 as the rest of the code but I don't really get it")
+            viewbox_list = list(map(float, svg_root.getAttribute("viewBox").split(" ")))
+            view_box = Bbox(*viewbox_list)
+        else:
+            view_box = Bbox(24)
 
         primitives = {
             "path": SVGPath,
