@@ -6,6 +6,11 @@ from tqdm import tqdm
 import glob
 import pandas as pd
 
+import sys
+import traceback
+import pdb
+
+
 from deepsvg.svglib.svg import SVG
 
 
@@ -31,6 +36,12 @@ def preprocess_svg(svg_file, output_folder, meta_data):
         "max_len_group": max(len_groups)
     }
 
+
+# def main(args):
+#     md = {}
+#     preprocess_svg("/home/sh/o/unsymbols/deepsvg/dataset/unsymbols/svg/00A0F__GURMUKHI_LETTER_EE__NotoSansGurmukhi-Regular.svg", "/tmp/svgs_out", md)
+#     print(md)
+#     breakpoint()
 
 def main(args):
     with futures.ThreadPoolExecutor(max_workers=args.workers) as executor:
@@ -63,4 +74,9 @@ if __name__ == '__main__':
 
     if not os.path.exists(args.output_folder): os.makedirs(args.output_folder)
 
-    main(args)
+    try:
+        main(args)
+    except Exception as e:
+        extype, value, tb = sys.exc_info()
+        traceback.print_exc()
+        pdb.post_mortem(tb)
