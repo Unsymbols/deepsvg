@@ -27,7 +27,7 @@ class Config(Config):
         self.ckpt_every = 100
 
         # 50 default, we can --resume training 
-        self.num_epochs = 200
+        self.num_epochs = 400
 
         self.dataloader_module = "deepsvg.svg_dataset"  #
         self.collate_fn = None                                #
