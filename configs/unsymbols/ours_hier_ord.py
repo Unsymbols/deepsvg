@@ -28,5 +28,5 @@ class Config(Config):
 
         self.dataloader_module = "deepsvg.svg_dataset"  #
         self.collate_fn = None                                #
-        self.data_dir = "/home/sh/o/unsymbols/DATASETS/deepsvg/cyl_lat_can_simplified"             #
-        self.meta_filepath = "/home/sh/o/unsymbols/DATASETS/deepsvg/meta_cyr_lat_can.csv"       #
+        self.data_dir = "/home/sh/o/unsymbols/DATASETS/deepsvg/full_svg_simplified"             #
+        self.meta_filepath = "/home/sh/o/unsymbols/DATASETS/deepsvg/meta_full_svg.csv"       #

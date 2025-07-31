@@ -37,9 +37,9 @@ def preprocess_svg(svg_file, output_folder, meta_data):
     }
 
 
-# def main(args):
+# def main2(args):
 #     md = {}
-#     preprocess_svg("/home/sh/o/unsymbols/deepsvg/dataset/unsymbols/svg/00A0F__GURMUKHI_LETTER_EE__NotoSansGurmukhi-Regular.svg", "/tmp/svgs_out", md)
+#     preprocess_svg("/home/sh/o/unsymbols/deepsvg/dataset/unsymbols/cyr_svg/0A66E__CYRILLIC_LETTER_MULTIOCULAR_O__DejaVuSans.svg", "/tmp/svgs_out", md)
 #     print(md)
 #     breakpoint()
 
