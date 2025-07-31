@@ -123,12 +123,15 @@ class SVG:
 
 
         #SH
+        # breakpoint()
         if svg_root.getAttribute("viewBox") != "":  
-            print(f"No viewbox, using 24 as the rest of the code but I don't really get it")
             viewbox_list = list(map(float, svg_root.getAttribute("viewBox").split(" ")))
             view_box = Bbox(*viewbox_list)
         else:
-            view_box = Bbox(24)
+            print(f"No viewbox, creating one of as 00wh")
+            w, h = svg_root.getAttribute("width"), svg_root.getAttribute("height")
+            viewbox_list = list(map(float, [0, 0, w, h]))
+            view_box = Bbox(*viewbox_list)
 
         primitives = {
             "path": SVGPath,

@@ -12,7 +12,7 @@ dependencies = [
     "moviepy>=1.0.3",
     "networkx>=3.1",
     "numba>=0.53.1",
-    # "numpy>=1.24.4",  # numpy both 1 and 2 not possible, we force to <2 
+    # "numpy>=1.24.4",  # numpy both 1 and 2 not possible, we force to <2
     # "numpy>=1.24.4<2",
     "numpy>=1.24.4,<2",
     "pandas>=2.0.3",
@@ -42,5 +42,10 @@ includes = [
 [build-system]
 requires = ["pdm-backend"]
 build-backend = "pdm.backend"
+
+[dependency-groups]
+dev = [
+    "pdbpp>=0.11.7",
+]
 
 
