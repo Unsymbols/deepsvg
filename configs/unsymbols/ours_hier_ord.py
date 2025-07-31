@@ -26,6 +26,9 @@ class Config(Config):
         self.val_every = 100
         self.ckpt_every = 100
 
+        # 50 default, we can --resume training 
+        self.num_epochs = 200
+
         self.dataloader_module = "deepsvg.svg_dataset"  #
         self.collate_fn = None                                #
         self.data_dir = "/home/sh/o/unsymbols/DATASETS/deepsvg/full_svg_simplified"             #
