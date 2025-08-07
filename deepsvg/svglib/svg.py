@@ -161,9 +161,9 @@ class SVG:
 
         # TODO
         if make_bbox_fit_everything:
-            print(
-                "! SH - using viewbox-fits-everything-hack because svglib doesn't like SVG transforms by potrace"
-            )
+            # print(
+            #     "! SH - using viewbox-fits-everything-hack because svglib doesn't like SVG transforms by potrace"
+            # )
             all_bboxes = [pg.bbox() for pg in svg_path_groups]
             max_view_box = union_bbox(all_bboxes)
             view_box = max_view_box

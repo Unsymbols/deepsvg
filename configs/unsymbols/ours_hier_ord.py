@@ -7,6 +7,7 @@ class ModelConfig(Hierarchical):
 
         self.label_condition = False
         self.use_vae = False
+        # self.use_vae = True
 
 
 class Config(Config):
@@ -20,8 +21,9 @@ class Config(Config):
         self.filter_category = None
 
         self.learning_rate = 1e-3 * num_gpus
+        # self.learning_rate = 2e-4 * num_gpus
         # self.batch_size = 60 * num_gpus
-        self.batch_size = 20
+        self.batch_size = 80
 
         # default 500
         self.warmup_steps = 1000  #
