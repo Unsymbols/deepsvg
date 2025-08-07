@@ -1,7 +1,20 @@
+# Unsymbols
+## CHANGES to deepsvg  
+- SVG `view_box` now is an envelope over objects
+    - The existing implementation didn't work for potrace SVG because translation didn't work
+- Many other small changes I did to get it to run, new packages etc. etc. etc.
+- pyproject, uv 
+- sampling — allow sampling letters without providing an initialization vector 
+- Jupyter notebooks to generate symbols and show them prettily
+
+## Running
+
 To run: python 3.9
 ```bash
 uv pip install -e .
 ```
+
+## Old fixes
 
 "No kernel available with this device" fixable by:
 ```bash
