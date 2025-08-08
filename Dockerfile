@@ -1,6 +1,5 @@
 # FROM python:3.9-slim
-FROM ghcr.io/astral-sh/uv:python3.9-bookworm
-
+FROM ghcr.io/astral-sh/uv:python3.9-bookworm-slim
 
 # Set environment variables
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -20,12 +19,18 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libssl-dev \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Copy the project into the image
 ADD . /app
 
-# Sync the project into a new environment, asserting the lockfile is up to date
 WORKDIR /app
+
 RUN uv sync --locked
+
+CMD bash preprocess_and_or_train.sh
+
+# CMD uv run dataset/preprocess.py --data_folder $DSVG_PRP_DATA_FOLDER --output_folder $DSVG_PRP_OUTPUT_FOLDER  --output_meta_file  $DSVG_PRP_OUTPUT_FOLDER/meta.csv
+
+# CMD uv run dataset/preprocess.py --data_folder ~/o/unsymbols/preprocessing/data/0.5-svg/ --output_folder ~/o/unsymbols/preprocessing/data/22-0.7-svg-preprocessed/  --output_meta_file  ~/o/unsymbols/preprocessing/data/22-0.7-svg-preprocessed/meta.csv
+
 
 # # Install Miniconda
 # RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /miniconda.sh && \

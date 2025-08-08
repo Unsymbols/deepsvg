@@ -1,6 +1,9 @@
-dataset
+Dockerfile
+dataset/*_tensor
+dataset/*.zip
+dataset/*.csv
 .venv
 pretrained
 .git
 docs
-
+notebooks

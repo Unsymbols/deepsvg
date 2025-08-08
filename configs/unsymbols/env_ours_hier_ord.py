@@ -17,11 +17,12 @@ class ModelConfig(Hierarchical):
         self.use_vae = False
         # self.use_vae = True
 
+
 NUM_GPUS = 2 if num_gpus is None else int(num_gpus)
 
+
 class Config(Config):
-    def __init__(self, num_gpus=NUM_GPUS)):
-        """
+    def __init__(self, num_gpus=NUM_GPUS):
         super().__init__(num_gpus=num_gpus)
 
         # hierarchical_orderer
