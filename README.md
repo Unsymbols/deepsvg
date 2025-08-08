@@ -28,9 +28,9 @@ uv pip install -e .
 
 
 ```bash
-docker run -v /tmp/data/:/data/ -v ~/o/unsymbols/preprocessing/data/0.5-svg/:/data/data_folder -i -e PRP_DATA_FOLDER=/data/data_folder -e  PRP_OUTPUT_FOLDER=/data/dsvout  -t gitlab.hs-anhalt.de:5050/unsymbols/deepsvg:latest
+Assuming your 1-svg dataset is available locally at /tmp/data2/datasets/myoutdir/1-svg (sorry), then:
 
-docker run -i -e DSVG_DO_PREPROCESS=1 -e DSVG_PRP_DATA_FOLDER=/data/data_folder -e  DSVG_PRP_OUTPUT_FOLDER=/data/dsvout -e DSVG_TRAIN_LOGDIR=/data/logdir -e DSVG_TRAIN_BS=1 -e DSVG_TRAIN_DATA_DIR=/data/dsvout -v ~/o/unsymbols/preprocessing/data/0.5-svg/:/data/data_folder  gitlab.hs-anhalt.de:5050/unsymbols/training/deepsvg:latest 
+❯ docker run -i -e DSVG_DO_PREPROCESS=1 -e DSVG_PRP_DATA_FOLDER=/data/data_folder -e DSVG_PRP_OUTPUT_FOLDER=/data/dsvout -e DSVG_TRAIN_LOGDIR=/data/logdir -e DSVG_TRAIN_BS=2 -e DSVG_TRAIN_DATA_DIR=/data/dsvout -e DSVG_TRAIN_GPUS=4 -v /tmp/data2/datasets/myoutdir/1-svg/:/data/data_folder  gitlab.hs-anhalt.de:5050/unsymbols/training/deepsvg:latest
 ```
 
 

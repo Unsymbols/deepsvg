@@ -1,9 +1,12 @@
 #/bin/bash
+export
 
 # if DO_PREPROCESS is set, run the preprocessing script
 if [ -n "$DSVG_DO_PREPROCESS" ]; then
     echo "Running preprocessing script..."
 	uv run dataset/preprocess.py --data_folder $DSVG_PRP_DATA_FOLDER --output_folder $DSVG_PRP_OUTPUT_FOLDER  --output_meta_file  $DSVG_PRP_OUTPUT_FOLDER/meta.csv
+    echo "Preprocessing completed. Output saved to $DSVG_PRP_OUTPUT_FOLDER/meta.csv."
+    file $DSVG_PRP_OUTPUT_FOLDER/meta.csv
 else
     echo "Skipping preprocessing step."
 fi

@@ -1,0 +1,35 @@
+# 02-hello-world.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: deepsvg
+  namespace: proj-unsymbols
+spec:
+  restartPolicy: Never
+  containers:
+    - name: deepsvg
+      image: gitlab.hs-anhalt.de:5050/unsymbols/training/deepsvg:latest
+      envFrom:
+      - configMapRef:
+          name: cm-unsymbols
+      - configMapRef:
+          name: cm-unsymbols-deepsvg
+        # - name: DSVG_CONFIG_MODULE
+        #   valueFrom:
+        #     configMapKeyRef:
+        #       name: cm-unsymbols-deepsvg
+        #       key: DSVG_CONFIG_MODULE
+      volumeMounts: # Mount the persistent volume
+        - name: data
+          mountPath: /data
+      resources:
+        limits:
+          cpu: "4"
+          memory: "10Gi"
+          nvidia.com/gpu: "1"
+  imagePullSecrets:
+    - name: unsymbols-container-secrets
+  volumes: # Specify the persistent volume claim
+    - name: data
+      persistentVolumeClaim:
+        claimName: pvc-unsymbols
