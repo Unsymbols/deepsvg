@@ -26,7 +26,12 @@ uv pip install -e .
         - DSVG_TRAIN_BS  (=whatever configs.unsymbols.env_ours_hier_org.py)
         - DSVG_TRAIN_NUM_GPUS (=2)
 
+### Building etc.
+```bash
+docker build -t gitlab.hs-anhalt.de:5050/unsymbols/training/deepsvg:latest -t gitlab.hs-anhalt.de:5050/unsymbols/training/deepsvg:0.1  .
+```
 
+### Running locally as example
 ```bash
 Assuming your 1-svg dataset is available locally at /tmp/data2/datasets/myoutdir/1-svg (sorry), then:
 

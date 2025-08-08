@@ -9,6 +9,8 @@ spec:
   containers:
     - name: deepsvg
       image: gitlab.hs-anhalt.de:5050/unsymbols/training/deepsvg:latest
+      # command: ["/bin/bash"]
+      # command: ["sleep", "3600"] # Keep the pod running for 1 hour
       envFrom:
       - configMapRef:
           name: cm-unsymbols

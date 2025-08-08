@@ -25,6 +25,9 @@ WORKDIR /app
 
 RUN uv sync --locked
 
+# Install CUDA stuff to get it running
+RUN uv pip install torch==1.12.1+cu116 torchvision==0.13.1+cu116 torchaudio==0.12.1 --extra-index-url https://download.pytorch.org/whl/cu116
+
 CMD bash preprocess_and_or_train.sh
 
 # CMD uv run dataset/preprocess.py --data_folder $DSVG_PRP_DATA_FOLDER --output_folder $DSVG_PRP_OUTPUT_FOLDER  --output_meta_file  $DSVG_PRP_OUTPUT_FOLDER/meta.csv
