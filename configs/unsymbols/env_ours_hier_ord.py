@@ -5,6 +5,8 @@ from pathlib import Path
 import os
 
 data_dir = os.environ.get("DSVG_TRAIN_DATA_DIR", None)
+batch_size = os.environ.get("DSVG_TRAIN_BS", None)
+num_gpus = os.environ.get("DSVG_TRAIN_NUM_GPUS", None)
 
 
 class ModelConfig(Hierarchical):
@@ -15,9 +17,11 @@ class ModelConfig(Hierarchical):
         self.use_vae = False
         # self.use_vae = True
 
+NUM_GPUS = 2 if num_gpus is None else int(num_gpus)
 
 class Config(Config):
-    def __init__(self, num_gpus=2):
+    def __init__(self, num_gpus=NUM_GPUS)):
+        """
         super().__init__(num_gpus=num_gpus)
 
         # hierarchical_orderer
@@ -29,7 +33,7 @@ class Config(Config):
         self.learning_rate = 1e-3 * num_gpus
         # self.learning_rate = 2e-4 * num_gpus
         # self.batch_size = 60 * num_gpus
-        self.batch_size = 80
+        self.batch_size = int(batch_size) if batch_size else 60 * num_gpus
 
         # default 500
         self.warmup_steps = 1000  #
