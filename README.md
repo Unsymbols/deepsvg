@@ -22,6 +22,7 @@ uv pip install -e .
 - Training
     - DSVG_TRAIN_LOGDIR (=tensorboard logs, model checkpoints)
     - DSVG_TRAIN_DATA_DIR (=folder with preprocessed dataset)
+    - DSVG_TRAIN_RESUME if set to `--resume` will resume training
     - Hyperparameters:
         - DSVG_TRAIN_BS  (=whatever configs.unsymbols.env_ours_hier_org.py)
         - DSVG_TRAIN_NUM_GPUS (=2)

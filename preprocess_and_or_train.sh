@@ -15,6 +15,6 @@ fi
 # uv run deepsvg/train.py --config-module configs.unsymbols.ours_hier_ord --log-dir /tmp/deepsvglogdir
 #
 # env_ours .. contains hyperparameters from DVSG_TRAIN_[BS/NUM_GPUS/DATA_DIR]
-uv run deepsvg/train.py --config-module configs.unsymbols.env_ours_hier_ord --log-dir $DSVG_TRAIN_LOGDIR
+uv run deepsvg/train.py --config-module configs.unsymbols.env_ours_hier_ord --log-dir $DSVG_TRAIN_LOGDIR $DSVG_TRAIN_RESUME
 
 
