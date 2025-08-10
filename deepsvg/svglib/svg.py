@@ -140,7 +140,7 @@ class SVG:
             viewbox_list = list(map(float, svg_root.getAttribute("viewBox").split(" ")))
             view_box = Bbox(*viewbox_list)
         else:
-            print(f"No viewbox, creating one of as 00wh")
+            # print(f"No viewbox, creating one of as 00wh")
             w, h = svg_root.getAttribute("width"), svg_root.getAttribute("height")
             viewbox_list = list(map(float, [0, 0, w, h]))
             view_box = Bbox(*viewbox_list)
