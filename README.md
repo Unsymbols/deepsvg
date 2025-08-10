@@ -20,12 +20,20 @@ uv pip install -e .
     - DSVG_PRP_DATA_FOLDER (in), DSVG_PRP_OUTPUT_FOLDER (out)
         - metadata assumed in PRP_OUTPUT_FOLDER/meta.csv
 - Training
+:xa
+
     - DSVG_TRAIN_LOGDIR (=tensorboard logs, model checkpoints)
     - DSVG_TRAIN_DATA_DIR (=folder with preprocessed dataset)
     - DSVG_TRAIN_RESUME if set to `--resume` will resume training
     - Hyperparameters:
         - DSVG_TRAIN_BS  (=whatever configs.unsymbols.env_ours_hier_org.py)
         - DSVG_TRAIN_NUM_GPUS (=2)
+        - DSVG_TRAIN_DATA_DIR
+        - DSVG_TRAIN_BS
+        - DSVG_TRAIN_LR (then later multiplied by ngpus)
+        - DSVG_TRAIN_WARMUP_STEPS
+        - DSVG_TRAIN_CKPT_VAL_EVERY (both checkpoint and val)
+
 
 ### Building etc.
 ```bash
@@ -49,26 +57,8 @@ Assuming your 1-svg dataset is available locally at /tmp/data2/datasets/myoutdir
 (for my "| NVIDIA-SMI 535.247.01             Driver Version: 535.247.01   CUDA Version: 12.2")
 Got it from [Previous PyTorch Versions](https://pytorch.org/get-started/previous-versions/)
 
-
-- - - 
-
-![logo](docs/imgs/logo.png)
-
-<p align="center">
-    <a href="https://github.com/alexandre01/deepsvg">
-        <img alt="Stars" src="https://img.shields.io/github/stars/alexandre01/deepsvg.svg?color=ffd40c">
-    </a>
-    <a href="https://github.com/alexandre01/deepsvg/blob/master/LICENCE">
-        <img alt="Licence" src="https://img.shields.io/github/license/alexandre01/deepsvg.svg?color=blue">
-    </a>
-    <a href="https://www.aiunfolded.co">
-        <img alt="AI Unfolded" src="https://www.aiunfolded.co/badge.svg">
-    </a>
-    <a href="https://alexandre01.github.io/deepsvg/">
-        <img alt="Website" src="https://img.shields.io/website/http/alexandre01.github.io/deepsvg/index.html.svg?down_color=red&down_message=offline&up_message=online">
-    </a>
-    
-</p>
+# Old README
+(not all true and with many deletions by me, mostly for reference)
 
 ## Introduction
 
@@ -98,24 +88,7 @@ Please refer to section [below](#citation) for Citation details.
 
 [![DeepSVG video](docs/imgs/thumbnail.jpg)](https://youtu.be/w9Bu4u-SsKQ)
 
-
 ------------------------------------------------------------------------------------------------------------------------
-
-
-This repository includes:
-- The **training code** to reproduce our Hierarchical Generative Network: DeepSVG.
-- A **library for deep learning with SVG data**, including export functionality to differentiable PyTorch tensors.
-- The **SVG-Icons8 dataset**.
-- A **Graphical user interface** showing a demo of DeepSVG for vector graphics animation. 
-
-
-## Updates
-- December 2020: Added raw SVG dataloader (see [Dataloader](#dataloader) section).
-
-- September 2020: Accepted to NeurIPS2020 🎉
-
-- July 2020: Added pretrained models and notebook for Font generation. 
-
 
 ## Installation
 
@@ -228,34 +201,6 @@ icon.animate()
 ```
 ![dolphin_animate](docs/imgs/dolphin_animate.gif)
 
-### Differentiable SVG shape optimization
-Similarly to [PyTorch3D](https://github.com/facebookresearch/pytorch3d), differentiable operations can be performed on a `SVGTensor`, enabling to deform a circle to match an arbitrary target via gradient descent.
-Interestingly, using a lower number of Bézier commands in the initial circle (n) creates somehow artistic approximations of the target shape.
-See `notebooks/svgtensor.ipynb`.
-
-| n |     4       |        8       |        16       |         32      |
-|---|-------------|----------------|-----------------|-----------------|
-| optimization |![dolpin_optim_4](docs/imgs/dolphin_optim/dolpin_optim_4.gif)|![dolpin_optim_8](docs/imgs/dolphin_optim/dolpin_optim_8.gif)|![dolpin_optim_16](docs/imgs/dolphin_optim/dolpin_optim_16.gif)|![dolpin_optim_32](docs/imgs/dolphin_optim/dolpin_optim_32.gif)|
-
-
-## Graphical User Interface (_experimental_)
-While developing DeepSVG, we have also built a Graphical User Interface (GUI) for easier visualization of our model and as a tool to easily create 2D animations.
-The code, available under `deepsvg/gui`, is written with Kivy and the UI style is inspired from the design tool Figma.
-
-> **DISCLAIMER**: this GUI has been developed for demo purposes mainly and features one would expect from 
-a vector graphics editor (like rescaling) will be added in the near future. For more flexibility, we recommend creating
-animations programmatically using the template code provided in `notebooks/animation.ipynb`.
-
-![gui](docs/imgs/gui.gif)
-
-Shortcuts:
-- `H`: hand tool
-- `P`: pen tool
-- `Ctrl/⌘ Cmd P`: pencil tool
-- `K`: make keyframe
-- `spacebar`: play/pause
-- `Ctrl/⌘ Cmd E`: export animation to GIF (file is saved by default in `./gui_data`)
-
 ## Training
 
 Start a training by running the following command.
@@ -282,36 +227,3 @@ If this doesn't work, you can download them manually from Google Drive and place
 We provide sample code in `notebooks/interpolate.ipynb` to perform interpolation between pairs of SVG icons
 and `notebooks/latent_ops.ipynb` for word2vec-like operations in the SVG latent space, as shown in the experiments of our paper.
 
-
-## Notebooks
-
-| Description                                  | Link to notebook                                     |
-|----------------------------------------------|------------------------------------------------------|
-| SVGLib walk-through                          | [svglib.ipynb](notebooks/svglib.ipynb)               |
-| Differentiable SVGTensor optimization        | [svgtensor.ipynb](notebooks/svgtensor.ipynb)         |
-| DeepSVG interpolation between pairs of icons | [interpolation.ipynb](notebooks/interpolation.ipynb) |
-| DeepSVG latent space operations              | [latent_ops.ipynb](notebooks/latent_ops.ipynb)       |
-| DeepSVG animation between user-drawn images  | [animation.ipynb](notebooks/animation.ipynb)         |
-| DeepSVG generation and interpolation of Fonts| [fonts.ipynb](notebooks/fonts.ipynb)                 |
-
-## Citation
-If you find this code useful in your research, please cite:
-```
-@misc{carlier2020deepsvg,
-    title={DeepSVG: A Hierarchical Generative Network for Vector Graphics Animation},
-    author={Alexandre Carlier and Martin Danelljan and Alexandre Alahi and Radu Timofte},
-    year={2020},
-    eprint={2007.11301},
-    archivePrefix={arXiv},
-    primaryClass={cs.CV}
-}
-```
-
-
-## Contributing
-Contributions are welcome! Feel free to submit a pull request if you have found a bug or developed a feature that may be useful for others.
-Also, don't hesitate to contact [me](https://github.com/alexandre01/) for any further question related to this code repository.
-
-
-## Licence
-This code is released under the [MIT licence](LICENCE).
