@@ -1,5 +1,6 @@
 from configs.deepsvg.default_icons import *
 from pathlib import Path
+from pprint import pp
 
 # if DATA_DIR env variable is set, use it
 import os
@@ -7,7 +8,16 @@ import os
 data_dir = os.environ.get("DSVG_TRAIN_DATA_DIR", None)
 batch_size = os.environ.get("DSVG_TRAIN_BS", None)
 num_gpus = os.environ.get("DSVG_TRAIN_NUM_GPUS", None)
+lr = os.environ.get("DSVG_TRAIN_LR", None) #(that is then multiplied by num_gpus)
+warmup_steps = os.environ.get("DSVG_TRAIN_WARMUP_STEPS", None)
+checkpoint_and_val_every = os.environ.get("DSVG_TRAIN_CKPT_VAL_EVERY", None)
 
+print("==")
+interesting_envs = [x for x in os.environ.keys() if "DSVG_TRAIN" in x]
+print("Interesting environment variables found:")
+for k in interesting_envs:
+    print(f"\t{k}: {os.environ[k]}")
+print("==")
 
 class ModelConfig(Hierarchical):
     def __init__(self):
@@ -31,17 +41,19 @@ class Config(Config):
 
         self.filter_category = None
 
-        self.learning_rate = 1e-3 * num_gpus
+        env_learning_rate = float(lr) if lr else 1e-3
+        self.learning_rate = env_learning_rate * num_gpus
         # self.learning_rate = 2e-4 * num_gpus
         # self.batch_size = 60 * num_gpus
         self.batch_size = int(batch_size) if batch_size else 60 * num_gpus
 
         # default 500
-        self.warmup_steps = 1000  #
+        self.warmup_steps = warmup_steps if warmup_steps else 1000
 
         # our changes
-        self.val_every = 100
-        self.ckpt_every = 100
+        env_checkpoint_and_val_every = (int(checkpoint_and_val_every) if checkpoint_and_val_every else 1000)
+        self.val_every = env_checkpoint_and_val_every
+        self.ckpt_every = env_checkpoint_and_val_every
 
         # 50 default, we can --resume training
         self.num_epochs = 400
