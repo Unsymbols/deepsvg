@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: deepsvg-skel
+  name: deepsvg-svg-2
   namespace: proj-unsymbols
 spec:
   restartPolicy: Never
@@ -28,7 +28,7 @@ spec:
         limits:
           cpu: "4"
           memory: "10Gi"
-          nvidia.com/gpu: "1"
+          nvidia.com/gpu: "2"
   imagePullSecrets:
     - name: unsymbols-container-secrets
   volumes: # Specify the persistent volume claim
