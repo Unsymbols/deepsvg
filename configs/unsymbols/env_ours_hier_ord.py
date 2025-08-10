@@ -48,7 +48,7 @@ class Config(Config):
         self.batch_size = int(batch_size) if batch_size else 60 * num_gpus
 
         # default 500
-        self.warmup_steps = warmup_steps if warmup_steps else 1000
+        self.warmup_steps = int(warmup_steps) if warmup_steps else 1000
 
         # our changes
         env_checkpoint_and_val_every = (int(checkpoint_and_val_every) if checkpoint_and_val_every else 1000)
