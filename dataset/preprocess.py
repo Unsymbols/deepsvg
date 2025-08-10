@@ -46,6 +46,7 @@ def preprocess_svg(svg_file, output_folder, meta_data):
 def main(args):
     with futures.ThreadPoolExecutor(max_workers=args.workers) as executor:
         svg_files = glob.glob(os.path.join(args.data_folder, "*.svg"))
+        print(f"Found {len(svg_files)} SVG files to preprocess.")
         meta_data = {}
 
         with tqdm(total=len(svg_files)) as pbar:
