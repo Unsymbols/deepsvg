@@ -23,6 +23,7 @@ ADD . /app
 
 WORKDIR /app
 
+RUN uv remove torchvision torch
 RUN uv sync --locked
 
 # Install CUDA stuff to get it running
